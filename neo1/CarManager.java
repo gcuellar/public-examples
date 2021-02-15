@@ -1,33 +1,23 @@
 public class CarManager{
 
     private final Integer ARRAY_MAX_LIMIT = 50;
+    private int index;
     private Car[] cars;
 
     public CarManager(){
         this.cars = new Car[ARRAY_MAX_LIMIT];
+        this.index = 0;
     }
 
     public void addCar(Car newCar){
-        int index = getSize();
         if(index < ARRAY_MAX_LIMIT){
             this.cars[index] = newCar;
+            index++;
         }
     }
 
-    // Borrado de coche vía valor de la clase (en este caso por la matrícula)
-    public void removeCar(Car car){
-        int i = 0;
-        while(this.cars[i] != null && i < ARRAY_MAX_LIMIT){
-            if(cars[i].equals(car)){
-                cars[i] = null;
-                break;
-            }
-            i++;
-        }
-    }
-
-    // Borrado de coche vía índice.
-    public void removeCar(int index){
+    public void removeCar(){
+        index--;
         cars[index] = null;
     }
 
@@ -41,15 +31,22 @@ public class CarManager{
         }
     }
 
-    private int getSize(){
+    public Car search(String license){
         int i = 0;
-        int counter = 0;
-        while(this.cars[i] != null && i < ARRAY_MAX_LIMIT){
-            counter++;
+        while(i < ARRAY_MAX_LIMIT){
+            if(cars[i] != null && license.equals(cars[i].getLicense())){
+                return cars[i];
+            }
             i++;
         }
-        return counter;
+        return null;
+    }
+
+    public void modify(String license, Car newCarValues){
+        Car targetCar = this.search(license);
+        if(targetCar != null){
+            targetCar.setLicense(newCarValues.getLicense());
+            targetCar.setModel(newCarValues.getModel());
+        }
     }
 }
-
-    
