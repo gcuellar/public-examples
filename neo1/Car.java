@@ -28,7 +28,7 @@ public class Car{
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Car && ((Car)obj).toString().equals(this.toString());
+        return obj instanceof Car && this.toString().equals(((Car)obj).toString());
     }
 
     @Override
