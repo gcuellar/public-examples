@@ -25,16 +25,4 @@ public class Car{
     public void setModel(String model) {
         this.model = model;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof Car && this.toString().equals(((Car)obj).toString());
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "license='" + license + '\'' +
-                '}';
-    }
 }
